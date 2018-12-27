@@ -4,6 +4,7 @@
 
 from zabbix_api import ZabbixAPI
 import time
+import sys
 from conf.vars import *
 
 zapi = ZabbixAPI(server=ZBX_SERVER)
@@ -22,6 +23,8 @@ triggers = zapi.trigger.get ({
             })
 print "Host - Descricao - Última alteração - Idade"
 print "==========================================="
+reload(sys)
+sys.setdefaultencoding('utf-8')
 for y in triggers:
     nome_host = y["hosts"][0]["host"]
     
